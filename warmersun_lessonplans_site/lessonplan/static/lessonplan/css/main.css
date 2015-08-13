@@ -1,0 +1,14 @@
+/* fonts */
+body {
+	font-family: "adobe-garamond-pro",sans-serif;
+	font-style: normal;
+	font-weight: 400;
+}
+
+h1 {
+	font-weight: bold;
+}
+
+p {
+	font-size: 36px;
+}

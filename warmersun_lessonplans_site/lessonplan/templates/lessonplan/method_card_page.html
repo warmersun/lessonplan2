@@ -1,0 +1,16 @@
+{% extends "lessonplan/base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+
+<h1>{{ self.title }}</h1>
+
+{% if self.picture %}
+  {% image self.picture width-400 %}
+{% endif %}
+
+{{ self.why|richtext }}
+{{ self.how|richtext }}
+
+{%endblock %}
