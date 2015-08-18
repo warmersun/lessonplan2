@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.core.exceptions import ValidationError
 
 from wagtail.wagtailcore.models import Page
 from wagtail.wagtailcore.fields import RichTextField
@@ -16,7 +17,7 @@ from wagtail.wagtaildocs.blocks import DocumentChooserBlock
 from wagtail.wagtailimages.models import Image
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 
-from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel, PageChooserPanel
+from wagtail.wagtailadmin.edit_handlers import FieldPanel, MultiFieldPanel, StreamFieldPanel, PageChooserPanel
 
 class MethodCardPage(Page):
 	picture = models.ForeignKey(
@@ -58,8 +59,6 @@ class LessonPlanPage(Page):
 		('document',DocumentChooserBlock(icon='doc-empty', help_text='Any document you want to show during introduction')),
 	])
 	
-	introduction_length = models.PositiveSmallIntegerField(help_text='in minutes')
-
 	new_tool = StreamField([
 		('paragraph', blocks.RichTextBlock(icon = 'edit', help_text='Describe the new tool the kids will learn and use in this lesson.')),
 		('image', ImageChooserBlock(icon='image / picture', help_text='Picture about the new tool')),
@@ -84,25 +83,54 @@ class LessonPlanPage(Page):
 		related_name='+',
 	)
 
+	introduction_length = models.PositiveSmallIntegerField(help_text='in minutes Including introduction of theme, new tool and design challenge')
+
+	def _get_introduction_start(self):
+		return 0
+	introduction_start = property(_get_introduction_start)	
+
 	# empathize
 
 	empathize_length = models.PositiveSmallIntegerField(help_text='in minutes')
+	
+	def _get_empathize_start(self):
+		return self.introduction_length
+	empathize_start = property(_get_empathize_start)
 
 	#define
 
 	define_length = models.PositiveSmallIntegerField(help_text='in minutes')
+	
+	def _get_define_start(self):
+		return self.introduction_length + self.empathize_length
+	define_start = property(_get_define_start)
 
 	#ideate
     
 	ideate_length = models.PositiveSmallIntegerField(help_text='in minutes')
 
+	def _get_ideate_start(self):
+		return self.introduction_length + self.empathize_length + self.define_length
+	ideate_start = property(_get_ideate_start)	
     #prototype
     
 	prototype_length = models.PositiveSmallIntegerField(help_text='in minutes')
     
+	def _get_prototype_start(self):
+		return self.introduction_length + self.empathize_length + self.define_length + self.ideate_length
+	prototype_start = property(_get_prototype_start)
+    	
     #test
 
 	test_length = models.PositiveSmallIntegerField(help_text='in minutes')
+   
+   	def _get_test_start(self):
+   		return self.introduction_length + self.empathize_length + self.define_length + self.ideate_length + self.prototype_length
+	test_start = property(_get_test_start)
+       
+	def _get_total_length(self):
+		return self.introduction_length + self.empathize_length + self.define_length + self.ideate_length + self.prototype_length + self.test_length
+	total_length = property(_get_total_length)
     
 	link_with_real_life = StreamField([
 		('paragraph', blocks.RichTextBlock(icon = 'edit', help_text='Describe how what the kids did actually looks in real life.')),
@@ -112,18 +140,22 @@ class LessonPlanPage(Page):
 		('document',DocumentChooserBlock(icon='doc-empty', help_text='Upload any document that shows real life use cases')),
 	])
    
+   
 LessonPlanPage.content_panels = Page.content_panels + [
     FieldPanel('theme'),
     FieldPanel('exponential_technology'),
     StreamFieldPanel('introduction'),
-    FieldPanel('introduction_length'),
     StreamFieldPanel('new_tool'),
     StreamFieldPanel('design_challenge'),
     PageChooserPanel('method'),
-    FieldPanel('empathize_length'),
-    FieldPanel('define_length'),
-    FieldPanel('ideate_length'),
-    FieldPanel('prototype_length'),
-    FieldPanel('test_length'),
+    MultiFieldPanel(
+    	children=[
+    		FieldPanel('introduction_length'), 
+	    	FieldPanel('empathize_length'),
+    		FieldPanel('define_length'),
+    		FieldPanel('ideate_length'),
+    		FieldPanel('prototype_length'),
+    		FieldPanel('test_length')],
+    	heading='Timing'),
     StreamFieldPanel('link_with_real_life'),
 ]
