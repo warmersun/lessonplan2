@@ -4,62 +4,75 @@
 
 {% block content %}
 
-<h1>{{ self.title }}</h1>
+<h1>{{ self.title }} <span class="label label-primary">{{ self.exponential_technology }}</span></h1>
 
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-1">
-		{{ self.theme|richtext }}
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-1">
-		{{ self.exponential_technology }}
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-1">
-		{{ self.introduction }}
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-1">
-		{{ self.new_tool }}
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-1">
-		{{ self.design_challenge }}
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-1">
-		{{ self.method }}
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-1">
-		{{ self.link_with_real_life }}
-		</div>
-	</div>
+<div class="panel panel-default">
+	<div class="panel-heading">Theme</div>
+	<div class="panel-body">{{ self.theme|richtext }}</div>
+</div>
+<div class="panel panel-success">
+	<div class="panel-heading">Introduction</div>
+	<div class="panel-body">{{ self.introduction }}</div>
+</div>
+<div class="panel panel-info">
+	<div class="panel-heading">New tool</div>
+	<div class="panel-body">{{ self.new_tool }}</div>
+</div>
+<div class="panel panel-primary">
+	<div class="panel-heading">Design Chalenge</div>
+	<div class="panel-body">{{ self.design_challenge }}</div>
+</div>
+<div class="panel panel-info">
+	<div class="panel-heading">Method Card</div>
+	<div class="panel-body">{{ self.method }}</div>
+</div>
+<div class="panel panel-info">
+	<div class="panel-heading">Link with Real Life</div>
+	<div class="panel-body">{{ self.link_with_real_life }}</div>
+</div>
 	
 	<!-- slider to show timing -->
-	
-	<div class="row">
-		<div class="col-md-1">
-			<div id="timing"></div>
+
+<div class="panel panel-default">
+	<div class="panel-heading">Timing</div>
+	<div class="panel-body">
+		<div class="well well-lg">
+			<div id="timing" style="margin-left:30px;margin-right:30px"></div>
 			<script>
+			var mylabels = {first: "Introduction", 
+			                last: "End", 
+			                 rest: {
+							 	{{ self.empathize_start }}: "Empathize - {{ self.empathize_start }}min",
+								{{ self.define_start }}: "Define - {{ self.define_start }}min",
+								{{ self.ideate_start }}: "Ideate - {{ self.ideate_start }}min",
+								{{ self.prototype_start }}: "Prototype - {{ self.prototype_start }}min",
+								{{ self.test_start }}: "Test - {{ self.test_start }}min",
+								{{ self.total_length }}: "End"							 								 
+			                 }	
+			                };
+			
 			$( "#timing" ).slider({
-				disabled: true,
-				max: {{ self.total_length }},
+				max: 120,
 				values: [
 					{{ self.introduction_start }},
 					{{ self.empathize_start }},
 					{{ self.define_start }},
 					{{ self.ideate_start }},
 					{{ self.prototype_start }},
-					{{ self.test_start }}
-				]				
+					{{ self.test_start }},
+					{{ self.total_length }}
+				],
+				slide: function( event, ui ) {
+					return false;
+				}				
+			});
+			$( "#timing" ).slider("pips", {
+				rest: "label",
+				step: 15,
+				suffix: "min"
+			});
+			$( "#timing" ).slider("float", {
+				labels: mylabels
 			});
 			</script>			
 		</div>

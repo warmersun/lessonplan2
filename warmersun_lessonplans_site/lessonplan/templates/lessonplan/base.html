@@ -11,6 +11,11 @@
 <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}{% block title_postfix %} | Warmer Sun LessonPlans{% endblock %}</title>
 
 <meta name="description" content="{% if self.search_description %}{{ self.search_description }}{% endif %}">
+
+<!-- typekit fonts -->
+<script src="//use.typekit.net/ysi6pcb.js"></script>
+<script>try{Typekit.load({ async: true });}catch(e){}</script>
+
         
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="{% static "lessonplan/bootstrap-dist/css/bootstrap.min.css" %}">
@@ -21,17 +26,16 @@
 <!-- custom css -->
 
 <link rel="stylesheet" href="{% static "lessonplan/css/main.css" %}">
-<link rel="stylesheet" href="{% static "lessonplan/jquery-ui-1.11.4.custom/jquery-ui.css" %}">
 
-<!-- typekit fonts -->
-<script src="//use.typekit.net/ysi6pcb.js"></script>
-<script>try{Typekit.load({ async: true });}catch(e){}</script>
+<link rel="stylesheet" href="{% static "lessonplan/jquery-ui-1.11.4.custom/jquery-ui.css" %}">
+<link rel="stylesheet" href="{% static "lessonplan/css/jquery-ui-slider-pips.css" %}">
+
 
 <!-- Latest compiled and minified JavaScript -->
-<script src="{% static "lessonplan/bootstrap-dist/js/jquery-2.1.3.min.js" %}"></script>
+<script src="{% static "lessonplan/js/jquery-2.1.4.min.js" %}"></script>
 <script src="{% static "lessonplan/jquery-ui-1.11.4.custom/jquery-ui.js" %}"></script>
 <script src="{% static "lessonplan/bootstrap-dist/js/bootstrap.min.js" %}"></script>
-
+<script src="{% static "lessonplan/js/jquery-ui-slider-pips.js" %}"></script>
 </head>
 
 <body>
@@ -40,7 +44,7 @@
 
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-md-1">
+		<div class="col-md-12">
 			{% block content %}{% endblock %}
 		</div>
 	</div>
@@ -51,16 +55,16 @@
       <div class="container-fluid well">
 		<div class="row">
 			<div class="col-md-3">
-				<a href="https://facebook.com/warmersun"><img src="{% static "lessonplan/images/FB-f-Logo__blue_50.png" %}" style="padding-right:15px">warmersun</a>
+				<small><a href="https://facebook.com/warmersun"><img src="{% static "lessonplan/images/FB-f-Logo__blue_50.png" %}" style="padding-right:15px">warmersun</a></small>
 			</div>
 			<div class="col-md-3">
-				<a href="https://plus.google.com/+WarmerSunVancouver"><img src="{% static "lessonplan/images/g+48.png" %}" style="padding-right:15px">+WarmerSunVancouver</a>
+				<small><a href="https://plus.google.com/+WarmerSunVancouver"><img src="{% static "lessonplan/images/g+48.png" %}" style="padding-right:15px">+WarmerSunVancouver</a></small>
 			</div>
 			<div class="col-md-3">
-				<a href="https://medium.com/@warmersun"><img src="{% static "lessonplan/images/Medium.jpeg" %}" style="padding-right:15px">@WarmerSun</a>
+				<small><a href="https://medium.com/@warmersun"><img src="{% static "lessonplan/images/Medium.jpeg" %}" style="padding-right:15px">@WarmerSun</a></small>
 			</div>
 			<div class="col-md-3">
-				<img src="{% static "lessonplan/images/canadian_flag.jpg" %}" class="img-responsive" alt="Canadian Flag">Proudly Canadian
+				<small><img src="{% static "lessonplan/images/canadian_flag.jpg" %}" class="img-responsive" alt="Canadian Flag">Proudly Canadian</small>
 			</div>
 		</div>
       </div>
