@@ -47,8 +47,8 @@ INSTALLED_APPS = (
     'wagtail.wagtailredirects',
     'wagtail.wagtailforms',
 
+	'home',
     'search',
-    'home',
     'lessonplan',
 )
 
@@ -137,3 +137,5 @@ MEDIA_URL = '/media/'
 # Wagtail settings
 
 WAGTAIL_SITE_NAME = "warmersun_lessonplans_site"
+
+EMBEDLY_KEY = "f9848f5bf0ce4e90aa4046241be26c36"

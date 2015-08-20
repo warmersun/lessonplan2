@@ -1,4 +1,4 @@
-{% load static wagtailuserbar %}
+{% load lessonplan_tags static wagtailuserbar %}
 
 <!DOCTYPE html>
 <html>
@@ -42,6 +42,13 @@
 
 {% wagtailuserbar %}
 
+{% block menu %}
+    {% get_site_root as site_root %}
+    {% top_menu parent=site_root calling_page=self %}
+{% endblock %}
+
+<br/>
+
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
@@ -54,17 +61,14 @@
 	<footer class="footer">
       <div class="container-fluid well">
 		<div class="row">
-			<div class="col-md-3">
+			<div class="col-md-4">
 				<small><a href="https://facebook.com/warmersun"><img src="{% static "lessonplan/images/FB-f-Logo__blue_50.png" %}" style="padding-right:15px">warmersun</a></small>
 			</div>
-			<div class="col-md-3">
-				<small><a href="https://plus.google.com/+WarmerSunVancouver"><img src="{% static "lessonplan/images/g+48.png" %}" style="padding-right:15px">+WarmerSunVancouver</a></small>
-			</div>
-			<div class="col-md-3">
+			<div class="col-md-4">
 				<small><a href="https://medium.com/@warmersun"><img src="{% static "lessonplan/images/Medium.jpeg" %}" style="padding-right:15px">@WarmerSun</a></small>
 			</div>
-			<div class="col-md-3">
-				<small><img src="{% static "lessonplan/images/canadian_flag.jpg" %}" class="img-responsive" alt="Canadian Flag">Proudly Canadian</small>
+			<div class="col-md-4">
+				<small><img src="{% static "lessonplan/images/canadian_flag.jpg" %}" class="img-responsive" alt="Canadian Flag" align="left" style="padding-right:15px">Proudly Canadian</small>
 			</div>
 		</div>
       </div>

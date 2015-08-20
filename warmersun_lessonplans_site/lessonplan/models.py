@@ -19,6 +19,13 @@ from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, MultiFieldPanel, StreamFieldPanel, PageChooserPanel
 
+class BlogPage(Page):
+    body = RichTextField(blank=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('body', classname="full")
+    ]
+    
 class MethodCardPage(Page):
 	picture = models.ForeignKey(
         'wagtailimages.Image',

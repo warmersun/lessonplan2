@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<h1>{{ self.title }} <span class="label label-primary">{{ self.exponential_technology }}</span></h1>
+<h1>{{ self.title }} <small><span class="label label-primary">{{ self.exponential_technology }}</span></small></h1>
 
 <div class="panel panel-default">
 	<div class="panel-heading">Theme</div>
@@ -12,23 +12,23 @@
 </div>
 <div class="panel panel-success">
 	<div class="panel-heading">Introduction</div>
-	<div class="panel-body">{{ self.introduction }}</div>
+	<div class="panel-body">{% include "lessonplan/includes/ws_streamfield.html" with field=self.introduction %}</div>
 </div>
 <div class="panel panel-info">
 	<div class="panel-heading">New tool</div>
-	<div class="panel-body">{{ self.new_tool }}</div>
+	<div class="panel-body">{% include "lessonplan/includes/ws_streamfield.html" with field=self.new_tool %}</div>
 </div>
 <div class="panel panel-primary">
 	<div class="panel-heading">Design Chalenge</div>
-	<div class="panel-body">{{ self.design_challenge }}</div>
+	<div class="panel-body">{% include "lessonplan/includes/ws_streamfield.html" with field=self.design_challenge %}</div>
 </div>
 <div class="panel panel-info">
 	<div class="panel-heading">Method Card</div>
-	<div class="panel-body">{{ self.method }}</div>
+	<div class="panel-body"><a href="{{ self.method.url }}">{{ self.method.title }}</a></div>
 </div>
 <div class="panel panel-info">
 	<div class="panel-heading">Link with Real Life</div>
-	<div class="panel-body">{{ self.link_with_real_life }}</div>
+	<div class="panel-body">{% include "lessonplan/includes/ws_streamfield.html" with field=self.link_with_real_life %}</div>
 </div>
 	
 	<!-- slider to show timing -->
@@ -77,6 +77,14 @@
 			</script>			
 		</div>
 	</div>
+</div>
+
+<div class="alert alert-info" role="alert">
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+<img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />
+<span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><strong>{{ self.title }}</strong> lesson plan</span> 
+by <a xmlns:cc="http://creativecommons.org/ns#" href="{{ self.full_url }} " property="cc:attributionName" rel="cc:attributionURL">Tamas Simon (Sic)</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.<br />
+Permissions beyond the scope of this license may be available at <a xmlns:cc="http://creativecommons.org/ns#" href="http://warmersun.com" rel="cc:morePermissions">http://warmersun.com</a>.
 </div>
 
 {%endblock %}

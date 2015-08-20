@@ -1,0 +1,11 @@
+{% for block in field %}
+	{% if block.block_type == 'link' %}
+	<a href="{{ block.value }}">{{ block.value }}</a>
+	{% elif block.block_type == 'document' %}
+	<a href="{{ block.value.url }}">{{ block.value.title }}</a>
+	{% else %}
+	<section class="block-{{ block.block_type }}">
+		{{ block }}
+	</section>
+	{% endif %}
+{% endfor %}
