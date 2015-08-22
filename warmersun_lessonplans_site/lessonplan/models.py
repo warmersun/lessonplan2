@@ -166,3 +166,19 @@ LessonPlanPage.content_panels = Page.content_panels + [
     	heading='Timing'),
     StreamFieldPanel('link_with_real_life'),
 ]
+
+# index pages
+
+class LessonPlanIndexPage(Page):
+	@property
+	def lessonplans(self):
+		lessonplans = LessonPlanPage.objects.live().descendant_of(self)
+		
+		return lessonplans
+		
+class MethodCardIndexPage(Page):
+	@property
+	def methodcards(self):
+		methodcards = MethodCardPage.objects.live().descendant_of(self)
+		
+		return methodcards

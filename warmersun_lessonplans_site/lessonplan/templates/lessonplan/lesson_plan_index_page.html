@@ -1,0 +1,15 @@
+{% extends "lessonplan/base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+<h1>{{ self.title }}</h1>
+
+<ul class="list-group">
+{% for lessonplan in self.lessonplans %}
+	<li class="list-group-item"><span class="badge">{{ lessonplan.exponential_technology}}</span><a href="{{ lessonplan.url }}">{{ lessonplan.title }}</a></li>
+{% empty %}
+	<li class="list-group-item">No lesson plans yet. :-(</li>
+{% endfor %}
+</ul>
+{% endblock %}

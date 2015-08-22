@@ -1,0 +1,15 @@
+{% extends "lessonplan/base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+<h1>{{ self.title }}</h1>
+
+<ul class="list-group">
+{% for methodcard in self.methodcards %}
+	<li class="list-group-item"><a href="{{ methodcard.url }}">{{ methodcard.title }}</a></li>
+{% empty %}
+	<li class="list-group-item">No method cards yet. :-(</li>
+{% endfor %}
+</ul>
+{% endblock %}
