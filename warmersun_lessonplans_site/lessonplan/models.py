@@ -52,7 +52,7 @@ class LessonPlanPage(Page):
 		('ai', 'AI'),
 		('diybio', 'DIYbio'),
 		('iot', 'IoT'),
-                ('uav', 'Drones'),
+        ('uav', 'Drones'),
 	)
 
 	theme = RichTextField(blank=True, help_text='Set the theme or topic for the lesson. Is it about space and colonizing a planet? Is it dinosaurs? What is it?')
@@ -83,11 +83,9 @@ class LessonPlanPage(Page):
 		('document',DocumentChooserBlock(icon='doc-empty', help_text='Upload any document such as story cards')),
 	])
 
-	method = models.ForeignKey(
+	method = models.ManyToManyField(
 		'MethodCardPage',
-		null=True,
 		blank=True,
-		on_delete=models.SET_NULL,
 		related_name='+',
 	)
 
