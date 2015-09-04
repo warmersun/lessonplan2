@@ -52,6 +52,7 @@ class LessonPlanPage(Page):
 		('ai', 'AI'),
 		('diybio', 'DIYbio'),
 		('iot', 'IoT'),
+                ('uav', 'Drones'),
 	)
 
 	theme = RichTextField(blank=True, help_text='Set the theme or topic for the lesson. Is it about space and colonizing a planet? Is it dinosaurs? What is it?')
