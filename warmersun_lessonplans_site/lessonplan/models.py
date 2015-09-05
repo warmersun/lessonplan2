@@ -12,6 +12,7 @@ from wagtail.wagtailimages.blocks import ImageChooserBlock
 from wagtail.wagtailcore.blocks import URLBlock
 from wagtail.wagtailembeds.blocks import EmbedBlock
 from wagtail.wagtaildocs.blocks import DocumentChooserBlock
+from wagtail.wagtailcore.blocks import RawHTMLBlock
 
 
 from wagtail.wagtailimages.models import Image
@@ -65,6 +66,7 @@ class LessonPlanPage(Page):
 		('video_embed', EmbedBlock(icon='media', help_text='Introductory video')),
 		('link', URLBlock(icon='link', help_text='Link to intorductiontory video or other content')),
 		('document',DocumentChooserBlock(icon='doc-empty', help_text='Any document you want to show during introduction')),
+		('raw_html',RawHTMLBlock(icon='code', help_text='Raw HTML embed')),
 	])
 	
 	new_tool = StreamField([
@@ -73,6 +75,7 @@ class LessonPlanPage(Page):
 		('video_embed', EmbedBlock(icon='media', help_text='Introduce the new tool in a video')),
 		('link', URLBlock(icon='link', help_text='Link to videos, webpages etc. to introducethe new tool')),
 		('document',DocumentChooserBlock(icon='doc-empty', help_text='Any document such as a users guide for instance.')),
+		('raw_html',RawHTMLBlock(icon='code', help_text='Raw HTML embed')),
 	])
 
 	design_challenge = StreamField([
@@ -81,6 +84,7 @@ class LessonPlanPage(Page):
 		('video_embed', EmbedBlock(icon='media', help_text='Embed a video that will pose the design challenge')),
 		('link', URLBlock(icon='link', help_text='Link to any video or webpage ... though I don\'t see why you would here...')),
 		('document',DocumentChooserBlock(icon='doc-empty', help_text='Upload any document such as story cards')),
+		('raw_html',RawHTMLBlock(icon='code', help_text='Raw HTML embed')),
 	])
 
 	method = models.ForeignKey(
@@ -146,6 +150,7 @@ class LessonPlanPage(Page):
 		('video_embed', EmbedBlock(icon='media', help_text='Embed a video that shows real life applications')),
 		('link', URLBlock(icon='link', help_text='Link to any video or webpage of real life applications')),
 		('document',DocumentChooserBlock(icon='doc-empty', help_text='Upload any document that shows real life use cases')),
+		('raw_html',RawHTMLBlock(icon='code', help_text='Raw HTML embed')),
 	])
    
    
